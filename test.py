@@ -28,7 +28,7 @@ infiles = initin(infiles)
 outfiles = initout(infiles, outfiles, codec, endings)
 
 
-
+#printout
 print(infiles)
 print(outfiles)
 #for f in files:
