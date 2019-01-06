@@ -7,6 +7,8 @@ outfiles = list()
 codec = 'h264_nvenc'
 parastr = '-c:v ' + codec + ' -crf 32 -c:a aac -b:a 128k'
 endings = '.mp4'
+currentpath = os.path.dirname(os.path.abspath(__file__))
+outfolder = 'out\\'
 
 def initin(infiles):
     infiles = os.listdir(".\\")              # list in dir
@@ -20,15 +22,25 @@ def initout(infiles, outfiles, codec, endings):
         outfiles.append(str(f).replace(endings, codec + endings))
     return outfiles
 
-def conv(infile, outfile, params):
-    ff = ffmpy.FFmpeg(inputs={infile:None}, outputs={outfile:params})
+def conv(infile, outfile, params, outfolder):
+    if os.path.isdir(currentpath + outfolder) is False:
+        os.mkdir(currentpath + outfolder)
+    else:
+        print('dir vorhanden')
+
+    ff = ffmpy.FFmpeg(inputs={infile:None}, outputs={outfolder + outfile:params})
     ff.run()
+
+#os.mkdir = '.\\out'
 
 infiles = initin(infiles)
 outfiles = initout(infiles, outfiles, codec, endings)
 
+conv(infiles[0], outfiles[0], parastr, outfolder)
 
-#printout
+print(infiles[0])
+print(outfiles[0])
+
 print(infiles)
 print(outfiles)
 #for f in files:
