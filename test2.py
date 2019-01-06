@@ -1,8 +1,9 @@
 import os
+from tkinter import *
 
-currentpath = os.path.dirname(os.path.abspath(__file__))
+window = Tk()
+window.title('test')
 
-if os.path.isdir(currentpath + '\\out') is False:
-    os.mkdir(currentpath + '\\out')
-else:
-    print('dir vorhanden')
+Label(window, text='Hallo').grid(row=1, column=0, sticky=W)
+
+window.mainloop()
