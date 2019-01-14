@@ -4,8 +4,15 @@ import re
 
 infiles = list()
 outfiles = list()
+
+#parastr = '-c:v ' + codec + ' -crf 32 -c:a aac -b:a 128k'
+
 codec = 'h264_nvenc'
-parastr = '-c:v ' + codec + ' -crf 32 -c:a aac -b:a 128k'
+parastr = '-c:v ' + codec + ' -rc vbr_hq -b:v 1M -maxrate:v 2M -c:a aac -b:a 128k'
+#codec = 'hevc_nvenc'
+#parastr = '-c:v ' + codec + ' -rc vbr_hq -b:v 1M -maxrate:v 2M -c:a aac -b:a 128k'
+
+parain = '-hwaccel nvdec'
 endings = '.mp4'
 currentpath = os.path.dirname(os.path.abspath(__file__))
 outfolder = 'out\\'
@@ -36,7 +43,12 @@ def conv(infile, outfile, params, outfolder):
 infiles = initin(infiles)
 outfiles = initout(infiles, outfiles, codec, endings)
 
-conv(infiles[0], outfiles[0], parastr, outfolder)
+#conv
+#conv(infiles[0], outfiles[0], parastr, outfolder)
+z = 0
+for f in infiles:
+    conv(infiles[z], outfiles[z], parastr, outfolder)
+    z += 1
 
 print(infiles[0])
 print(outfiles[0])
