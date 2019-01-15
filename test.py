@@ -5,7 +5,6 @@ import logging
 import sys
 import shutil
 
-
 infiles = list()
 outfiles = list()
 #parastr = '-c:v ' + codec + ' -crf 32 -c:a aac -b:a 128k'
